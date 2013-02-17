@@ -1,0 +1,18 @@
+a {
+  color: #0769ad;
+}
+a:hover {
+  text-decoration: none;
+}
+header .brand {
+  font-size: 24px;
+  font-weight: bold;
+}
+header .nav {
+  margin-bottom: 0;
+}
+.footer {
+  border-top: 1px solid #eee;
+  padding: 10px 0;
+  font-size: 11px;
+}

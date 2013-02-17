@@ -1,0 +1,53 @@
+!!!
+html
+  head
+    title
+      | jsoa.io
+      block extra-title
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/font-awesome.min.css')
+    //if IE 7
+      link(rel='stylesheet', href='/css/font-awesome-ie7.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+    block extra-css
+    script(src='/js/jquery.min.js')
+    script(src='/js/bootstrap.min.js')
+    block extra-js
+    block extra-head
+  body
+    header
+      .container
+        .page-header
+          .row
+            .span6
+              .brand
+                a(href='/') jsoa.io
+            .span6
+              ul.nav.nav-pills.pull-right
+                li
+                  a(href='//github.com/jsoa/', target='_new')
+                    i.icon-github-alt
+                li
+                  a(href='//twitter.com/jsoa/', target='_new')
+                    i.icon-twitter
+                li
+                  a(href='/contact')
+                    i.icon-envelope-alt
+
+    article.container
+      block content
+
+    footer
+      .container
+        .navbar.navbar-fixed-bottom.navbar-inverse
+          .navbar-inner
+            .container
+              a.brand(href='/')
+                | &copy; 2013 jsoa.io
+              ul.nav.pull-right
+                li
+                  a(href='//github.com/jsoa/') Github
+                li
+                  a(href='//twitter.com/jsoa/') Twitter
+                li
+                  a(href='/contact') Contact
