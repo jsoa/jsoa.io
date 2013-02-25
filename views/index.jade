@@ -1,4 +1,64 @@
 extends layout
 
+block extra-head
+  script(src='/js/site/home.js')
+  include includes/activity_templates
+
+
 block content
-  h2= title
+
+  .row-fluid(ng-controller="HomeCtrl")
+    .span8
+      ul.activity
+        li(ng-repeat="item in items")
+          .row-fluid
+              ng-include(src="item.source")
+    .span4
+      .bio
+        .img
+          img(src='http://www.gravatar.com/avatar/71291ed4929b119a3a2c374a42935209.png')
+        strong
+          | Jose Soares
+        br
+        | Technology Consultant
+        br
+        | jose
+        em
+          | (AT)
+        | linux.com
+
+      h3 Gists
+      ul.gists
+        li(
+          ng-repeat="gist in gists",
+          ng-class-odd="'odd'")
+          a(href="{{ gist.url }}")
+            {{ gist.title | truncate:75 }}
+          .item-footer
+            {{ gist.date | date:longDate }}
+      h3 Repos
+      ul.repos
+        li(
+          ng-repeat="repo in repos",
+          ng-class-odd="'odd'")
+
+          a(ng-href="{{repo.url}}", ng-bind="repo.name")
+          | &nbsp;
+          i.icon.icon-random(ng-show="repo.payload.payload.fork")
+          .item-desc(ng-bind="repo.description")
+          .item-footer(ng-bind="repo.updated | date:longDate")
+      h3 Orgs
+      ul.orgs
+        li(
+          ng-repeat="org in orgs",
+          ng-class-odd="'odd'")
+          a(ng-href="{{ org.url }}", ng-bind="org.name")
+          | &nbsp;
+          .item-desc(ng-bind="org.description")
+          .item-footer
+            strong
+              | Repos:&nbsp;
+            | {{ org.payload.payload.public_repos }}&nbsp;
+            strong
+              | Gists:&nbsp;
+            | {{ org.payload.payload.public_gists }}&nbsp;

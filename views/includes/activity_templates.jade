@@ -1,0 +1,233 @@
+
+// Specific github event templates
+script(type='text/ng-template', id='CommitCommentEvent')
+  p
+    strong
+      | commented&nbsp;
+    | on a&nbsp;
+    a(href='{{ item.payload.payload.comment.html_url }}')
+      | commit
+    | &nbsp;on&nbsp;
+    a(href='//github.com/{{ item.payload.repo.name }}')
+      | {{ item.payload.repo.name }}
+
+    blockquote
+      markdown(extensions='github', ng-model="item.payload.payload.comment.body")
+
+
+script(type='text/ng-template', id='CreateEvent')
+  p
+    | Created&nbsp;
+    strong
+      | {{ item.payload.payload.ref_type }}&nbsp;
+    strong
+      | {{ item.payload.payload.ref }}&nbsp;
+    | on&nbsp;
+    a(href='//github.com/{{ item.payload.repo.name }}')
+      | {{ item.payload.repo.name }}
+
+script(type='text/ng-template', id='DeleteEvent')
+  p
+    | DELETEEVENT
+    strong
+      | deleted&nbsp;
+    strong
+      | {{ item.payload.payload.ref_type }} {{ item.payload.payload.ref }}
+
+
+script(type='text/ng-template', id='DownloadEvent')
+  p
+    strong
+      | created a download:&nbsp;
+    a(href='{{ item.payload.payload.download.html_url }}')
+      {{ item.payload.payload.download.name }}
+
+
+script(type='text/ng-template', id='FollowEvent')
+  p
+    | started&nbsp;
+    strong
+      | following&nbsp;
+    a(href='{{ item.payload.payload.target.html_url }}')
+      {{ item.payload.payload.target.name }}
+
+script(type='text/ng-template', id='ForkEvent')
+  p
+    strong
+      | forked&nbsp;
+    a(href='//github.com/{{ item.payload.repo.name }}')
+      {{ item.payload.repo.name }}
+    small
+      em
+        | &nbsp;-&nbsp;
+        a(href='{{ item.payload.payload.forkee.html_url }}') view
+
+
+script(type='text/ng-template', id='ForkApplyEvent')
+  p
+    | FORKAPPLYEVENT
+    | I applied (from) to (repo)
+
+
+script(type='text/ng-template', id='GistEvent')
+  p
+    | GISTEVENT
+    strong
+      {{ item.payload.payload.action }}d&nbsp;
+    | a gist&nbsp;
+    a(href='{{ item.payload.payload.gist.html_url }}')
+      {{ item.payload.payload.gist.description }}
+
+
+script(type='text/ng-template', id='GollumEvent')
+  p
+    | changed the following pages on&nbsp;
+    a(href='//github.com/{{ item.payload.repo.name }}')
+      {{ item.payload.repo.name }}
+
+    ul
+      li(ng-repeat='page in item.payload.payload.pages')
+        {{ page.action }}&nbsp;
+        a(href='{{ page.html_url }}') {{ page.title }}
+
+
+script(type='text/ng-template', id='IssueCommentEvent')
+  p
+    strong
+      | commented&nbsp;
+    | on&nbsp;
+
+    ng-switch(on='item.payload.payload.issue.pull_request.diff_url == null')
+      span(ng-switch-when='true')
+        | issue&nbsp;
+      span(ng-switch-when='false')
+        | pull request&nbsp;
+
+    a(href='{{ item.payload.payload.issue.html_url }}')
+      | \#{{ item.payload.payload.issue.number }}
+    | &nbsp;on&nbsp;
+    a(href='//github.com/{{ item.payload.repo.name }}')
+      {{ item.payload.repo.name }}
+
+    blockquote
+      markdown(extensions='github', ng-model='item.payload.payload.comment.body')
+
+
+script(type='text/ng-template', id='IssuesEvent')
+  p
+    strong
+      {{ item.payload.payload.action }}
+    | &nbsp;issue&nbsp;
+    a(href='{{ item.payload.payload.issue.html_url }}')
+      | \#{{ item.payload.payload.issue.number }}
+    | &nbsp;on&nbsp;
+    a(href='//github.com/{{ item.payload.repo.name }}')
+      {{ item.payload.repo.name }}
+
+
+script(type='text/ng-template', id='MemberEvent')
+  p
+    ng-switch(on='item.payload.actor.login == "jsoa"')
+      span(ng-switch-when='false')
+        a(href='//github.com/{{ item.payload.actor.login }}')
+          | {{ item.payload.actor.login }}
+
+    | &nbsp;{{ item.payload.payload.action }}&nbsp;
+
+    ng-switch(on='item.payload.payload.member.login == "jsoa"')
+      span(ng-switch-when='true')
+        strong Me
+      span(ng-switch-when='false')
+        strong
+          a(href='//github.com/{{ item.payload.payload.member.login }}')
+            {{ item.payload.payload.member.login }}
+
+    | &nbsp;as a member of&nbsp;
+    a(href='//github.com/{{ item.payload.repo.name }}')
+      {{ item.payload.repo.name }}
+
+
+
+script(type='text/ng-template', id='PublicEvent')
+  p
+    | PUBLICEVENT
+    | I made a repo public! (repo)
+
+
+script(type='text/ng-template', id='PullRequestEvent')
+  p
+    strong
+      {{ item.payload.payload.action }}&nbsp;
+    | pull request&nbsp;
+    a(href="{{ item.payload.payload.pull_request._links.html.href }}")
+      | \#{{ item.payload.payload.number }}&nbsp;
+    | on&nbsp;
+    a(href="//github.com/{{ item.payload.repo.name }}")
+      {{ item.payload.repo.name }}
+
+
+script(type='text/ng-template', id='PullRequestReviewCommentEvent')
+  p
+    strong
+      | commented&nbsp;
+    | on pull request&nbsp;
+    a(href="{{ item.payload.payload.comment._links.html.href }}")
+      {{ item.payload.repo.name }}
+
+    blockquote
+      markdown(extensions="github", ng-model="item.payload.payload.comment.body")
+
+
+script(type='text/ng-template', id='PushEvent')
+  p
+    strong
+      | pushed&nbsp;
+    | to&nbsp;
+    code(ng-bind="item.payload.payload.ref")
+    | &nbsp;on&nbsp;
+    a(href="//github.com/{{ item.payload.repo.name }}")
+      {{ item.payload.repo.name }}
+    ul
+      li(ng-repeat="commit in item.payload.payload.commits | limitTo:3")
+        .me(ng-bind-html="commit.message | gitmessage:item.payload.repo.name:commit.sha")
+      .m(ng-show="item.payload.payload.commits.length > 3")
+        ... and {{ item.payload.payload.commits.length - 3}} more commits
+
+
+script(type='text/ng-template', id='TeamAddEvent')
+  p
+    | TeamAddEvent
+    | added (object) to repo (repo)
+
+
+script(type='text/ng-template', id='WatchEvent')
+  p
+    | started&nbsp;
+    strong
+      | watching&nbsp;
+    a(href="//github.com/{{ item.payload.repo.name }}")
+      {{ item.payload.repo.name }}
+
+
+// Activity Types
+script(type='text/ng-template', id='github-events')
+  .span1
+    i.icon.icon-github-alt
+  .span11
+    .item(ng-include="item.text")
+    .item-footer
+      {{ item.date | date:longDate}}&nbsp;
+
+
+script(type='text/ng-template', id='twitter-timeline')
+  .span1
+    i.icon.icon-twitter
+  .span11
+    .item(ng-bind-html="item.text | tweetify")
+    .item-footer
+      {{ item.date | date:longDate}} via&nbsp;
+      .s(ng-bind-html="item.payload.source")
+      | &nbsp;(
+      a(href="//twitter.com/jsoa/status/{{ item.payload.id_str }}")
+        | view
+      | )
