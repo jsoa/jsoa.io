@@ -1,5 +1,5 @@
 !!!
-html
+html(ng-app="jsoa")
   head
     title
       | jsoa.io
@@ -10,6 +10,13 @@ html
       link(rel='stylesheet', href='/css/font-awesome-ie7.min.css')
     link(rel='stylesheet', href='/css/style.css')
     block extra-css
+    script(src='/js/showdown.js')
+    script(src='/js/extensions/github.js')
+    script(src='/js/extensions/twitter.js')
+    script(src='/js/angular.min.js')
+    script(src='/js/angular-sanitize.min.js')
+    script(src='/js/angular.markdown.js')
+
     script(src='/js/jquery.min.js')
     script(src='/js/bootstrap.min.js')
     block extra-js
@@ -30,6 +37,9 @@ html
                 li
                   a(href='//twitter.com/jsoa/', target='_new')
                     i.icon-twitter
+                li
+                  a(href='//www.linkedin.com/pub/jose-soares/7/621/13b', target='_new')
+                    i.icon-linkedin-sign
                 li
                   a(href='/contact')
                     i.icon-envelope-alt
