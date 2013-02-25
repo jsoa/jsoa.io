@@ -3,11 +3,23 @@
 # Module dependencies.
 
 express = require 'express'
+mongoose = require 'mongoose'
+
 routes = require './routes'
+models = require './models'
 user = require './routes/user'
 http = require 'http'
 path = require 'path'
 
+# DB
+mongoose.connect 'localhost', 'jsoa'
+db = mongoose.connection
+
+db.on 'error', console.error.bind(console, 'connection error')
+db.once 'open', ->
+  console.log 'db connection OK'
+
+# App
 app = express()
 
 app.configure ->
@@ -30,8 +42,14 @@ app.configure 'development', ->
   app.use express.errorHandler()
 
 
+# Routes
 app.get '/', routes.index
-app.get '/users', user.list
+
+# RPCS
+app.get '/rpc/activity', routes.rpcs.activity
+app.get '/rpc/gists', routes.rpcs.gists
+app.get '/rpc/repos', routes.rpcs.repos
+app.get '/rpc/orgs', routes.rpcs.orgs
 
 http.createServer(app).listen app.get('port'), ->
   console.log "Express server listening on port #{app.get('port')}"
