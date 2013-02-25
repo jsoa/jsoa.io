@@ -4,6 +4,9 @@ a {
 a:hover {
   text-decoration: none;
 }
+blockquote p {
+  font-size: inherit;
+}
 header .brand {
   font-size: 24px;
   font-weight: bold;
@@ -11,7 +14,97 @@ header .brand {
 header .nav {
   margin-bottom: 0;
 }
-.footer {
+article {
+  margin-bottom: 50px;
+}
+article .bio {
+  padding: 10px;
+  background-color: #fcfcfc;
+  border-bottom: 2px solid #eee;
+  min-height: 75px;
+}
+article .bio .img {
+  float: left;
+  margin-right: 10px;
+}
+article ul.activity,
+article ul.repos,
+article ul.gists,
+article ul.orgs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+article ul.activity>li,
+article ul.repos>li,
+article ul.gists>li,
+article ul.orgs>li {
+  margin: 0;
+  padding: 10px;
+  border-bottom: 2px solid #eee;
+  list-style: none;
+  background-color: #fcfcfc;
+}
+article ul.activity>li.odd,
+article ul.repos>li.odd,
+article ul.gists>li.odd,
+article ul.orgs>li.odd {
+  background-color: #f9f9f9;
+}
+article ul.activity>li .span1,
+article ul.repos>li .span1,
+article ul.gists>li .span1,
+article ul.orgs>li .span1 {
+  text-align: center;
+}
+article ul.activity>li .item,
+article ul.repos>li .item,
+article ul.gists>li .item,
+article ul.orgs>li .item {
+  margin-bottom: 5px;
+}
+article ul.activity>li .item .m,
+article ul.repos>li .item .m,
+article ul.gists>li .item .m,
+article ul.orgs>li .item .m {
+  font-size: 10px;
+}
+article ul.activity>li .item span.extra,
+article ul.repos>li .item span.extra,
+article ul.gists>li .item span.extra,
+article ul.orgs>li .item span.extra {
+  font-size: 12px;
+}
+article ul.activity>li i.icon-random,
+article ul.repos>li i.icon-random,
+article ul.gists>li i.icon-random,
+article ul.orgs>li i.icon-random {
+  font-size: 11px;
+}
+article ul.activity>li .item-desc,
+article ul.repos>li .item-desc,
+article ul.gists>li .item-desc,
+article ul.orgs>li .item-desc {
+  font-size: 12px;
+  color: #757575;
+}
+article ul.activity>li .item-footer,
+article ul.repos>li .item-footer,
+article ul.gists>li .item-footer,
+article ul.orgs>li .item-footer {
+  color: #aaa;
+  font-size: 11px;
+}
+article ul.activity>li .item-footer .s,
+article ul.repos>li .item-footer .s,
+article ul.gists>li .item-footer .s,
+article ul.orgs>li .item-footer .s {
+  display: inline;
+}
+article ul.activity>li {
+  background-color: #fff;
+}
+footer {
   border-top: 1px solid #eee;
   padding: 10px 0;
   font-size: 11px;

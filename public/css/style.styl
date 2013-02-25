@@ -6,6 +6,9 @@ a
   &:hover
     text-decoration none
 
+blockquote
+  p
+    font-size inherit
 
 
 header
@@ -16,8 +19,66 @@ header
   .nav
     margin-bottom 0
 
+article
+  margin-bottom 50px
 
-.footer
+  .bio
+    padding 10px
+    background-color #fcfcfc
+    border-bottom 2px solid #eee
+    min-height 75px
+
+    .img
+      float left
+      margin-right 10px
+
+  ul.activity, ul.repos, ul.gists, ul.orgs
+    margin 0
+    padding 0
+    list-style none
+
+    &>li
+      margin 0
+      padding 10px
+      border-bottom 2px solid #eee
+      list-style none
+      background-color #fcfcfc
+
+      &.odd
+        background-color #f9f9f9
+
+
+      .span1
+        text-align center
+
+      .item
+        margin-bottom 5px
+
+        .m
+          font-size 10px
+
+        span.extra
+          font-size 12px
+
+      i.icon-random
+        font-size 11px
+
+      .item-desc
+        font-size 12px
+        color #757575
+
+      .item-footer
+        color #aaa
+        font-size 11px
+        .s
+          display inline
+
+  ul.activity
+    &>li
+      background-color #fff
+
+
+footer
   border-top 1px solid #eee
   padding 10px 0
   font-size 11px
