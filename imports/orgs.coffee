@@ -65,12 +65,7 @@ get_github_orgs = (callback)->
         payload: org} for org in ogs)
 
 
-mongoose.connect config.mongo_connection
-db = mongoose.connection
-
-db.on 'error', console.error.bind(console, 'connection error')
-db.once 'open', ->
+exports.run = ->
   get_github_orgs (err, orgs)->
     import_orgs orgs, (err, results)->
       console.log 'DONE'
-      mongoose.disconnect()

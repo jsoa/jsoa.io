@@ -72,13 +72,7 @@ get_github_repos = (callback)->
     callback null, res
 
 
-mongoose.connect config.mongo_connection
-db = mongoose.connection
-
-db.on 'error', console.error.bind(console, 'connection error')
-db.once 'open', ->
-
+exports.run = ->
   get_github_repos (err, repos)->
     import_repos repos, (err, results)->
       console.log 'DONE'
-      mongoose.disconnect()

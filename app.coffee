@@ -10,7 +10,9 @@ models = require './models'
 user = require './routes/user'
 http = require 'http'
 path = require 'path'
+cron = require 'cron'
 
+imports = require './imports'
 config = require './config'
 
 # DB
@@ -55,3 +57,19 @@ app.get '/rpc/orgs', routes.rpcs.orgs
 
 http.createServer(app).listen app.get('port'), ->
   console.log "Express server listening on port #{app.get('port')}"
+
+
+job1 = new cron.CronJob(
+  '*/10 * * * *',
+  ->
+    imports.activity()
+  , null, true)
+
+
+job2 = new cron.CronJob(
+  '*/60 * * * *',
+  ->
+    imports.repos()
+    imports.orgs()
+    imports.gists()
+  , null, true)

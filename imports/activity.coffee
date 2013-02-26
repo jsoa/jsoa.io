@@ -93,11 +93,7 @@ get_github = (cb)->
     cb null, res
 
 
-mongoose.connect config.mongo_connection
-db = mongoose.connection
-
-db.on 'error', console.error.bind(console, 'connection error')
-db.once 'open', ->
+exports.run = ->
   import_funcs = [get_github, get_twitter]
 
   funcs = for func in import_funcs
@@ -109,4 +105,3 @@ db.once 'open', ->
 
   async.parallel funcs, (err, res)->
     console.log 'DONE'
-    mongoose.disconnect()

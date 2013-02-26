@@ -41,13 +41,8 @@ get_gists = (cb)->
       gist: gist} for gist in gists)
     cb err, results
 
-mongoose.connect config.mongo_connection
-db = mongoose.connection
 
-db.on 'error', console.error.bind(console, 'connection error')
-db.once 'open', ->
-
+exports.run = ->
   get_gists (err, res)->
     import_gists res, (err, results)->
       console.log 'DONE'
-      mongoose.disconnect()
