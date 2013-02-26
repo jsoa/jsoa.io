@@ -1,11 +1,16 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
+  "name": "jsoa.io",
+  "subdomain": "jsoa",
   "scripts": {
-    "start": "node app"
+    "start": "coffee app.coffee"
   },
+  "engines": {
+    "node": "0.8.x"
+  },
+  "version": "0.0.1-1",
+  "private": true,
   "dependencies": {
+    "coffee-script": "*",
     "express": "3.0.5",
     "jade": "*",
     "stylus": "*",
