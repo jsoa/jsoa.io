@@ -65,7 +65,7 @@ get_github_orgs = (callback)->
         payload: org} for org in ogs)
 
 
-mongoose.connect 'localhost', 'jsoa'
+mongoose.connect config.mongo_connection
 db = mongoose.connection
 
 db.on 'error', console.error.bind(console, 'connection error')

@@ -41,7 +41,7 @@ get_gists = (cb)->
       gist: gist} for gist in gists)
     cb err, results
 
-mongoose.connect 'localhost', 'jsoa'
+mongoose.connect config.mongo_connection
 db = mongoose.connection
 
 db.on 'error', console.error.bind(console, 'connection error')

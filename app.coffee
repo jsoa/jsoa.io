@@ -11,8 +11,10 @@ user = require './routes/user'
 http = require 'http'
 path = require 'path'
 
+config = require './config'
+
 # DB
-mongoose.connect 'mongodb://nodejitsu:a9660d9df199b6d9b2b663c8f024611f@linus.mongohq.com:10054/nodejitsudb1188126835'
+mongoose.connect config.mongo_connection
 db = mongoose.connection
 
 db.on 'error', console.error.bind(console, 'connection error')
