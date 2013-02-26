@@ -7,7 +7,7 @@
   "engines": {
     "node": "0.8.x"
   },
-  "version": "0.0.1-1",
+  "version": "0.0.1-4",
   "private": true,
   "dependencies": {
     "coffee-script": "*",
@@ -17,6 +17,7 @@
     "mongoose": "*",
     "github": "0.1.8",
     "twit": "1.0.12",
-    "async": "*"
+    "async": "*",
+    "cron": "1.0.1"
   }
 }
