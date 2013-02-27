@@ -67,7 +67,7 @@ job1 = new cron.CronJob(
 
 
 job2 = new cron.CronJob(
-  '*/15 * * * *',
+  '59 * * * *',
   ->
     imports.repos()
     imports.orgs()
