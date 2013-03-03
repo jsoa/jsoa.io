@@ -69,6 +69,10 @@ get_github = (cb)->
   console.log 'starting github import'
   g = new github {'version': '3.0.0'}
 
+  g.authenticate
+    type: 'oauth'
+    token: config.github_creds.token
+
   funcs = for x in [0..2]
     do(x)->
       (calb)->
