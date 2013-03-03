@@ -62,7 +62,7 @@ http.createServer(app).listen app.get('port'), ->
 
 
 job1 = new cron.CronJob(
-  '*/15 * * * *',
+  '*/5 * * * *',
   ->
     imports.activity()
   , null, true)
