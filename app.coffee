@@ -48,6 +48,7 @@ app.configure 'development', ->
 
 # Routes
 app.get '/', routes.index
+app.get '/about', routes.about
 
 # RPCS
 app.get '/rpc/activity', routes.rpcs.activity

@@ -18,7 +18,8 @@
     "github": "0.1.8",
     "twit": "1.0.12",
     "async": "*",
-    "cron": "1.0.1"
+    "cron": "1.0.1",
+    "marked": "0.2.8"
   },
   "domains": [
     "jsoa.io",
