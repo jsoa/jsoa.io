@@ -71,8 +71,11 @@
     $http.get('/rpc/gists').success(function(res, status) {
       return $scope.gists = res;
     });
-    $http.get('/rpc/repos').success(function(res, status) {
-      return $scope.repos = res;
+    $http.get('/rpc/repos/owned').success(function(res, status) {
+      return $scope.repos_owned = res;
+    });
+    $http.get('/rpc/repos/watched').success(function(res, status) {
+      return $scope.repos_watched = res;
     });
     return $http.get('/rpc/orgs').success(function(res, status) {
       return $scope.orgs = res;

@@ -67,8 +67,11 @@ app.filter 'gitmessage', ->
   $http.get('/rpc/gists').success (res, status)->
     $scope.gists = res
 
-  $http.get('/rpc/repos').success (res, status)->
-    $scope.repos = res
+  $http.get('/rpc/repos/owned').success (res, status)->
+    $scope.repos_owned = res
+
+  $http.get('/rpc/repos/watched').success (res, status)->
+    $scope.repos_watched = res
 
   $http.get('/rpc/orgs').success (res, status)->
     $scope.orgs = res

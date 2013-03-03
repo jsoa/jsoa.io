@@ -19,6 +19,7 @@ html(ng-app="jsoa")
 
     script(src='/js/jquery.min.js')
     script(src='/js/bootstrap.min.js')
+    script(src='/js/angular-pagination.js')
     block extra-js
     block extra-head
   body
@@ -46,6 +47,7 @@ html(ng-app="jsoa")
 
     article.container
       block content
+      .a(ng-pagination)
 
     footer
       .container

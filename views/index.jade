@@ -37,16 +37,36 @@ block content
           .item-footer
             {{ gist.date | date:longDate }}
       h3 Repos
-      ul.repos
-        li(
-          ng-repeat="repo in repos",
-          ng-class-odd="'odd'")
+      ul.nav.nav-tabs
+        li.active
+          a(href='#owned', data-toggle='tab') Owned ({{ repos_owned.length }})
+        li
+          a(href='#watching', data-toggle='tab') Watched ({{ repos_watched.length }})
 
-          a(ng-href="{{repo.url}}", ng-bind="repo.name")
-          | &nbsp;
-          i.icon.icon-random(ng-show="repo.payload.payload.fork")
-          .item-desc(ng-bind="repo.description")
-          .item-footer(ng-bind="repo.updated | date:longDate")
+      .tab-content
+        .tab-pane.active#owned
+          ul.repos
+            li(
+              ng-repeat="repo in repos_owned",
+              ng-class-odd="'odd'")
+
+              a(ng-href="{{repo.url}}", ng-bind="repo.name")
+              | &nbsp;
+              i.icon.icon-random(ng-show="repo.payload.payload.fork")
+              .item-desc(ng-bind="repo.description")
+              .item-footer(ng-bind="repo.updated | date:longDate")
+        .tab-pane#watching
+          ul.repos
+            li(
+              ng-repeat="repo in repos_watched",
+              ng-class-odd="'odd'")
+
+              a(ng-href="{{repo.url}}", ng-bind="repo.name")
+              | &nbsp;
+              i.icon.icon-random(ng-show="repo.payload.payload.fork")
+              .item-desc(ng-bind="repo.description")
+              .item-footer(ng-bind="repo.updated | date:longDate")
+
       h3 Orgs
       ul.orgs
         li(
