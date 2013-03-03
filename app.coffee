@@ -52,7 +52,8 @@ app.get '/', routes.index
 # RPCS
 app.get '/rpc/activity', routes.rpcs.activity
 app.get '/rpc/gists', routes.rpcs.gists
-app.get '/rpc/repos', routes.rpcs.repos
+app.get '/rpc/repos/owned', routes.rpcs.repos(true)
+app.get '/rpc/repos/watched', routes.rpcs.repos(false)
 app.get '/rpc/orgs', routes.rpcs.orgs
 
 http.createServer(app).listen app.get('port'), ->
@@ -67,7 +68,7 @@ job1 = new cron.CronJob(
 
 
 job2 = new cron.CronJob(
-  '59 * * * *',
+  '55 * * * *',
   ->
     imports.repos()
     imports.orgs()
