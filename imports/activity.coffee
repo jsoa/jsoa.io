@@ -76,7 +76,6 @@ get_github = (cb)->
   funcs = for x in [0..2]
     do(x)->
       (calb)->
-        console.log x
         g.events.getFromUserPublic {user: 'jsoa', page: x}, (err, events)->
           if err
             calb err
