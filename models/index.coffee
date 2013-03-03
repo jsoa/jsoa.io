@@ -28,6 +28,7 @@ exports.repoSchema = mongoose.Schema
   description: 'string'
   url: 'string'
   updated: 'date'
+  owner: 'boolean'
   payload: {}
 exports.Repo = (conn=mongoose)->
   conn.model 'Repo', exports.repoSchema

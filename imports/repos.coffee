@@ -14,6 +14,7 @@ import_repos = (repos, callback)->
           description: repo.description
           url: repo.url
           updated: repo.updated
+          owner: repo.owner
           payload: repo
 
         import_repo options, ->
@@ -37,6 +38,7 @@ import_repo = (options, callback)->
       description: options.description
       url: options.url
       updated: options.updated
+      owner: options.owner
       payload: options.payload
     )
 
@@ -44,15 +46,19 @@ import_repo = (options, callback)->
       console.log "Created repo (#{ options.name }), (#{ options.repo_id })"
       callback err, obj
 
-get_github_repos = (callback)->
+get_github_repos = (owner, callback)->
   console.log 'starting github repo import'
 
   g = new github {'version': '3.0.0'}
 
+  func = g.repos.getFromUser
+  if not owner
+    func = g.repos.getWatchedFromUser
+
   funcs = for x in [1..2]
     do(x)->
       (cb)->
-        g.repos.getFromUser {user: 'jsoa', type: 'owner', page: x}, (err, repos)->
+        func {user: 'jsoa',  page: x}, (err, repos)->
           if err
             cb err
             return
@@ -63,6 +69,7 @@ get_github_repos = (callback)->
             description: repo.description
             url: repo.html_url
             updated: repo.updated_at
+            owner: owner
             payload: repo} for repo in repos)
 
   async.parallel funcs, (err, lists)->
@@ -73,6 +80,11 @@ get_github_repos = (callback)->
 
 
 exports.run = ->
-  get_github_repos (err, repos)->
-    import_repos repos, (err, results)->
-      console.log 'DONE'
+  # Import watching repos and repos owned
+  get_github_repos true, (err, repos)->
+      import_repos repos, (err, results)->
+
+        get_github_repos false, (err, repos)->
+          import_repos repos, (err, results)->
+
+            console.log 'DONE'
