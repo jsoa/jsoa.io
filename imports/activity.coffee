@@ -73,7 +73,7 @@ get_github = (cb)->
     type: 'oauth'
     token: config.github_creds.token
 
-  funcs = for x in [0..2]
+  funcs = for x in [1..5]
     do(x)->
       (calb)->
         g.events.getFromUserPublic {user: 'jsoa', page: x}, (err, events)->
