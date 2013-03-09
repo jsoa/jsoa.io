@@ -10,7 +10,7 @@ models = require '../models'
 
 import_payloads = (payloads, callback)->
 
-  funcs = for payload in payloads
+  funcs = for payload in payloads when payload
     do (payload)->
       (cb)->
         options =
