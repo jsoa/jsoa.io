@@ -3,6 +3,8 @@ mongoose = require 'mongoose'
 async = require 'async'
 
 models = require '../models'
+config = require '../config'
+
 
 import_repos = (repos, callback)->
   funcs = for repo in repos
@@ -58,7 +60,7 @@ get_github_repos = (owner, callback)->
   funcs = for x in [1..2]
     do(x)->
       (cb)->
-        func {user: 'jsoa',  page: x}, (err, repos)->
+        func {user: config.github.account,  page: x}, (err, repos)->
           if err
             cb err
             return

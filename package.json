@@ -19,7 +19,8 @@
     "twit": "1.0.12",
     "async": "*",
     "cron": "1.0.1",
-    "marked": "0.2.8"
+    "marked": "0.2.8",
+    "Google_Plus_API": "*"
   },
   "domains": [
     "jsoa.io",

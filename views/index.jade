@@ -16,16 +16,13 @@ block content
     .span4
       .bio
         .img
-          img(src='http://www.gravatar.com/avatar/71291ed4929b119a3a2c374a42935209.png')
+          img(src="#{blog.owner.avatarUrl}")
         strong
-          | Jose Soares
+          | #{blog.owner.displayName}
         br
-        | Technology Consultant
+        | #{blog.owner.jobTitle}
         br
-        | jose
-        em
-          | (AT)
-        | linux.com
+        | !{blog.owner.email}
 
       h3 Gists
       ul.gists

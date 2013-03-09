@@ -2,6 +2,7 @@ twit = require 'twit'
 github = require 'github'
 mongoose = require 'mongoose'
 async = require 'async'
+GooglePlusAPI = require 'Google_Plus_API'
 
 config = require '../config'
 models = require '../models'
@@ -44,18 +45,20 @@ import_payload = (options, cb)->
       payload: options.payload
     )
     act.save (err, obj)->
-      console.log "Created object (#{ options.source } - #{ options.source_id })"
+      if err
+        console.log "Error saving object #{err}"
+      else
+        console.log "Created object (#{ options.source } - #{ options.source_id })"
       cb(err, obj)
 
 
 get_twitter = (cb)->
   console.log 'starting twitter import'
   t = new twit(
-    config.twitter_creds
+    config.twitter.oauth
   )
 
   t.get 'statuses/user_timeline', {count: 300}, (err, tweets)->
-
     results = ({
       source: 'twitter-timeline',
       source_id: tweet.id,
@@ -72,8 +75,7 @@ get_github = (cb)->
   funcs = for x in [0..2]
     do(x)->
       (calb)->
-        console.log x
-        g.events.getFromUserPublic {user: 'jsoa', page: x}, (err, events)->
+        g.events.getFromUserPublic {user: config.github.account, page: x}, (err, events)->
           if err
             calb err
             return
@@ -93,8 +95,21 @@ get_github = (cb)->
     cb null, res
 
 
+get_google_plus = (cb)->
+  gplus = new GooglePlusAPI config.google_plus.key
+  gplus.getActivites config.google_plus.account, 'public', (err, res)->
+    results = ({
+      source: "google-plus-#{r.kind.split('#')[1]}"
+      source_id: r.id
+      text: r.title
+      date: r.published
+      payload: r
+    } for r in res.items)
+    cb err, results
+
+
 exports.run = ->
-  import_funcs = [get_github, get_twitter]
+  import_funcs = [get_github, get_twitter, get_google_plus]
 
   funcs = for func in import_funcs
     do(func)->

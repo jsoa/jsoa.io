@@ -231,3 +231,17 @@ script(type='text/ng-template', id='twitter-timeline')
       a(href="//twitter.com/jsoa/status/{{ item.payload.id_str }}")
         | view
       | )
+
+
+
+script(type='text/ng-template', id='google-plus-activity')
+  .span1
+    i.icon.icon-google-plus
+  .span11
+    .item(ng-bind-html="item.payload.object.content")
+    .item-footer
+      {{ item.date | date:longDate}} via&nbsp;
+      | &nbsp;(
+      a(href="{{ item.payload.url }}")
+        | view
+      | )
