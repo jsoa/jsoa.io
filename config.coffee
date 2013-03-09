@@ -8,10 +8,11 @@ exports.github =
 
 exports.twitter =
   account: ''
-  consumer_key: process.env.TWIT_CONSUMER_KEY or ''
-  consumer_secret: process.env.TWIT_CONSUMER_SECRET or ''
-  access_token: process.env.TWIT_ACCESS_TOKEN or ''
-  access_token_secret: process.env.TWIT_ACCESS_TOKEN_SECRET or ''
+  oauth:
+    consumer_key: process.env.TWIT_CONSUMER_KEY or ''
+    consumer_secret: process.env.TWIT_CONSUMER_SECRET or ''
+    access_token: process.env.TWIT_ACCESS_TOKEN or ''
+    access_token_secret: process.env.TWIT_ACCESS_TOKEN_SECRET or ''
 
 
 exports.linkedin =
@@ -27,11 +28,23 @@ exports.blog =
     email: "<a href='mailto:example@example.org'>example@example.org</a>"
 
 
-install = ->
+#exports.google_plus =
+#  key: ''
+#  account: ''
+
+
+exports.cron =
+  standalone: false
+
+
+exports.google_analytics =
+  account: ''
+
+
+# end default config.
+(->
   try
     exports = module.exports = require './config-local'
-    console.log 'local config used'
+    console.log 'loaded config-local'
   catch err
-
-
-install()
+)()

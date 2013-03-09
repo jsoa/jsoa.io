@@ -1,11 +1,11 @@
 {
   "name": "jsoa.io",
   "subdomain": "jsoa",
-  "scripts": {
-    "start": "coffee app.coffee"
-  },
   "engines": {
     "node": "0.8.x"
+  },
+  "scripts": {
+    "start": "node ./node_modules/coffee-script/bin/coffee app.coffee"
   },
   "version": "0.0.9",
   "private": true,
@@ -16,7 +16,7 @@
     "stylus": "*",
     "mongoose": "*",
     "github": "0.1.8",
-    "twit": "1.0.12",
+    "twit": "1.1.4",
     "async": "*",
     "cron": "1.0.1",
     "marked": "0.2.8",
