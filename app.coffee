@@ -4,24 +4,15 @@
 
 express = require 'express'
 mongoose = require 'mongoose'
+http = require 'http'
+path = require 'path'
 
 routes = require './routes'
 models = require './models'
 user = require './routes/user'
-http = require 'http'
-path = require 'path'
-cron = require 'cron'
-
-imports = require './imports'
 config = require './config'
+db = require './db'
 
-# DB
-mongoose.connect config.mongo_connection
-db = mongoose.connection
-
-db.on 'error', console.error.bind(console, 'connection error')
-db.once 'open', ->
-  console.log 'db connection OK'
 
 # App
 app = express()
@@ -60,18 +51,5 @@ app.get '/rpc/orgs', routes.rpcs.orgs
 http.createServer(app).listen app.get('port'), ->
   console.log "Express server listening on port #{app.get('port')}"
 
-
-job1 = new cron.CronJob(
-  '*/15 * * * *',
-  ->
-    imports.activity()
-  , null, true)
-
-
-job2 = new cron.CronJob(
-  '55 * * * *',
-  ->
-    imports.repos()
-    imports.orgs()
-    imports.gists()
-  , null, true)
+if not config.cron.standalone
+  jobs = require './jobs'
