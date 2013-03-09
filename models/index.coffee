@@ -3,7 +3,7 @@ mongoose = require 'mongoose'
 # The main schema for any activity payload
 exports.activitySchema = mongoose.Schema
   source: 'string'
-  source_id: 'number'
+  source_id: 'string'
   text: 'string'
   date: 'date'
   payload: {}

@@ -2,7 +2,7 @@
 html(ng-app="jsoa")
   head
     title
-      | jsoa.io
+      | #{blog.name}
       block extra-title
     link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/font-awesome.min.css')
@@ -28,21 +28,29 @@ html(ng-app="jsoa")
           .row
             .span6
               .brand
-                a(href='/') jsoa.io
+                a(href='/') #{blog.name}
             .span6
               ul.nav.nav-pills.pull-right
-                li
-                  a(href='//github.com/jsoa/', target='_new')
-                    i.icon-github-alt
-                li
-                  a(href='//twitter.com/jsoa/', target='_new')
-                    i.icon-twitter
-                li
-                  a(href='//www.linkedin.com/pub/jose-soares/7/621/13b', target='_new')
-                    i.icon-linkedin-sign
-                li
-                  a(href='/about')
-                    i.icon-sign-blank
+                if (typeof(github) !== 'undefined')
+                  li
+                    a(href='//github.com/#{github.account}/', target='_new')
+                      i.icon-github-alt
+                if (typeof(google_plus) !== 'undefined')
+                  li
+                    a(href='//plus.google.com/#{google_plus.account}', target='_new')
+                      i.icon-google-plus-sign
+                if (typeof(twitter) !== 'undefined')
+                  li
+                    a(href='//twitter.com/#{twitter.account}/', target='_new')
+                      i.icon-twitter
+                if (typeof(linkedin) !== 'undefined')
+                  li
+                    a(href='//www.linkedin.com/#{linkedin.path}', _target='_new')
+                      i.icon-linkedin-sign
+                if (typeof(about) !== 'undefined')
+                  li
+                    a(href='/about')
+                      i.icon-sign-blank
 
 
     article.container
@@ -55,20 +63,27 @@ html(ng-app="jsoa")
           .navbar-inner
             .container
               a.brand(href='/')
-                | &copy; 2013 jsoa.io
+                | &copy; 2013 #{blog.name}
               ul.nav.pull-right
-                li
-                  a(href='//github.com/jsoa/') Github
-                li
-                  a(href='//twitter.com/jsoa/') Twitter
-                li
-                  a(href='//www.linkedin.com/pub/jose-soares/7/621/13b') LinkedIn
-                li
-                  a(href='/about') About
+                if (typeof(github) !== 'undefined')
+                  li
+                    a(href='//github.com/#{github.account}/') Github
+                if (typeof(google_plus) !== 'undefined')
+                  li
+                    a(href='//plus.google.com/#{google_plus.account}') Google+
+                if (typeof(twitter) !== 'undefined')
+                  li
+                    a(href='//twitter.com/#{twitter.account}/') Twitter
+                if (typeof(linkedin) !== 'undefined')
+                  li
+                    a(href='//www.linkedin.com/#{linkedin.path}') LinkedIn
+                if (typeof(about) !== 'undefined')
+                  li
+                    a(href='/about') About
 
     script(type="text/javascript")
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-38842789-1']);
+
       _gaq.push(['_trackPageview']);
 
       (function() {

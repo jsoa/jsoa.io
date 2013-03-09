@@ -15,8 +15,9 @@ cron = require 'cron'
 imports = require './imports'
 config = require './config'
 
+
 # DB
-mongoose.connect config.mongo_connection
+mongoose.connect config.mongo.connection
 db = mongoose.connection
 
 db.on 'error', console.error.bind(console, 'connection error')
