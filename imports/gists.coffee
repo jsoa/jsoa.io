@@ -3,6 +3,8 @@ mongoose = require 'mongoose'
 async = require 'async'
 
 models = require '../models'
+config = require '../config'
+
 
 import_gists = (gists, callback)->
   funcs = for gist in gists
@@ -35,7 +37,7 @@ import_gist = (id, gist, cb)->
 get_gists = (cb)->
   g = new github {'version': '3.0.0'}
 
-  g.gists.getFromUser {user: 'jsoa'}, (err, gists)->
+  g.gists.getFromUser {user: config.github.account}, (err, gists)->
     results = ({
       id: gist.id,
       gist: gist} for gist in gists)

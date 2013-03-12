@@ -3,6 +3,8 @@ mongoose = require 'mongoose'
 async = require 'async'
 
 models = require '../models'
+config = require '../config'
+
 
 import_orgs = (orgs, callback)->
   funcs = for org in orgs
@@ -46,7 +48,7 @@ get_github_orgs = (callback)->
   g = new github {'version': '3.0.0'}
 
   results = []
-  g.orgs.getFromUser {user: 'jsoa', per_page: 100}, (err, orgs)->
+  g.orgs.getFromUser {user: config.github.account, per_page: 100}, (err, orgs)->
     if err
       callback err
 
