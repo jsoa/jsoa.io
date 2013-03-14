@@ -2,7 +2,7 @@ models = require '../models'
 
 
 exports.activity = (req, res)->
-  models.Activity().find().sort('field -date').limit(25).exec (err, objs)->
+  models.Activity().find().sort('field -date').limit(200).exec (err, objs)->
     res.json(objs)
 
 exports.gists = (req, res)->

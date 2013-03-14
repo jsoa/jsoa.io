@@ -1,1 +1,4 @@
 node_modules
+config-local.coffee
+npm-shrinkwrap.json
+manifest.yml
