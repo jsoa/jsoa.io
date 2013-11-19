@@ -7,6 +7,7 @@ exports.activitySchema = mongoose.Schema
   text: 'string'
   date: 'date'
   payload: {}
+exports.activitySchema.index({source: 1, source_id: 1}, {unique: true})
 exports.Activity = (conn=mongoose)->
   conn.model 'Activity', exports.activitySchema
 
@@ -17,6 +18,7 @@ exports.gistSchema = mongoose.Schema
   date: 'date'
   url: 'string'
   title: 'string'
+exports.gistSchema.index({id: 1}, {unique: true})
 exports.Gist = (conn=mongoose)->
   conn.model 'Gist', exports.gistSchema
 
@@ -30,6 +32,7 @@ exports.repoSchema = mongoose.Schema
   updated: 'date'
   owner: 'boolean'
   payload: {}
+exports.repoSchema.index({repo_id: 1}, {unique: true})
 exports.Repo = (conn=mongoose)->
   conn.model 'Repo', exports.repoSchema
 
@@ -41,5 +44,6 @@ exports.orgSchema = mongoose.Schema
   description: 'string'
   url: 'string'
   payload: {}
+exports.orgSchema.index({org_id: 1}, {unique: true})
 exports.Org = (conn=mongoose)->
   conn.model 'Org', exports.orgSchema
