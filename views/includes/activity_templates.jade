@@ -238,7 +238,10 @@ script(type='text/ng-template', id='google-plus-activity')
   .span1
     i.icon.icon-google-plus
   .span11
-    .item(ng-bind-html="item.payload.object.content")
+    .item
+      .item-footer(ng-show="item.payload.verb != 'post'")
+        {{ item.payload.verb }}
+      .item(ng-bind-html="item.payload.object.content")
     .item-footer
       {{ item.date | date:longDate}} via&nbsp;
       | &nbsp;(
