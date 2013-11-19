@@ -29,9 +29,9 @@ exports.blog =
     email: ''
 
 
-#exports.google_plus =
-#  key: ''
-#  account: ''
+exports.google_plus =
+ key: process.env.GOOGLE_PLUS_KEY or ''
+ account: process.env.GOOGLE_PLUS_ACCOUNT or ''
 
 
 exports.cron =
