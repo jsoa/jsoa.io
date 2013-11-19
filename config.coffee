@@ -21,12 +21,12 @@ exports.linkedin =
 
 
 exports.blog =
-  name: process.env.BLOG_NAME or ''
+  name: 'unknown'
   owner:
-    displayName: process.env.BLOG_DISPLAY_NAME
-    avatarUrl: process.env.BLOG_AVATAR_URL
-    jobTitle: process.env.BLOG_JOB_TITLE
-    email: process.env.BLOG_EMAIL
+    displayName: 'user'
+    avatarUrl: ''
+    jobTitle: ''
+    email: ''
 
 
 #exports.google_plus =
