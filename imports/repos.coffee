@@ -82,6 +82,9 @@ get_github_repos = (owner, callback)->
 
 
 exports.run = ->
+  if not config.github
+    return
+
   # Import watching repos and repos owned
   get_github_repos true, (err, repos)->
       import_repos repos, (err, results)->

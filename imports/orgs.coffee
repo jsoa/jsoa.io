@@ -68,6 +68,9 @@ get_github_orgs = (callback)->
 
 
 exports.run = ->
+  if not config.github
+    return
+
   get_github_orgs (err, orgs)->
     import_orgs orgs, (err, results)->
       console.log 'DONE'

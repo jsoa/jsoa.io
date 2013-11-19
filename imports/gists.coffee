@@ -45,6 +45,9 @@ get_gists = (cb)->
 
 
 exports.run = ->
+  if not config.github
+    return
+
   get_gists (err, res)->
     import_gists res, (err, results)->
       console.log 'DONE'
