@@ -48,4 +48,5 @@ exports.google_analytics =
     exports = module.exports = require './config-local'
     console.log 'loaded config-local'
   catch err
+    console.log 'config-local error', err
 )()
