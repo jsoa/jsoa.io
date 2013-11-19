@@ -79,7 +79,7 @@ get_github = (cb)->
 
   g.authenticate
     type: 'oauth'
-    token: config.github_creds.token
+    token: config.github.token
 
   funcs = for x in [1..5]
     do(x)->
