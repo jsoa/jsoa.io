@@ -3,7 +3,7 @@ exports.mongo =
 
 
 exports.github =
-  account: ''
+  account: process.env.GITHUB_ACCOUNT or ''
   token: process.env.GITHUB_TOKEN or ''
 
 
@@ -21,12 +21,12 @@ exports.linkedin =
 
 
 exports.blog =
-  name: 'unknown blog'
+  name: process.env.BLOG_NAME or ''
   owner:
-    displayName: 'Blog User'
-    avatarUrl: ''
-    jobTitle: 'Ditch Digger'
-    email: "<a href='mailto:example@example.org'>example@example.org</a>"
+    displayName: process.env.BLOG_DISPLAY_NAME
+    avatarUrl: process.env.BLOG_AVATAR_URL
+    jobTitle: process.env.BLOG_JOB_TITLE
+    email: process.env.BLOG_EMAIL
 
 
 #exports.google_plus =
