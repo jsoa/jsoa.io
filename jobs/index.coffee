@@ -5,14 +5,14 @@ db = require '../db'
 
 
 job1 = new cron.CronJob(
-  '*/2 * * * *',
+  '*/15 * * * *',
   ->
     imports.activity()
   , null, true)
 
 
 job2 = new cron.CronJob(
-  '*/2* * * *',
+  '*/30 * * * *',
   ->
     imports.repos()
     imports.orgs()
