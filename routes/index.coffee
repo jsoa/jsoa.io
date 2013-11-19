@@ -4,7 +4,7 @@ config = require '../config'
 exports.rpcs = require './rpcs'
 
 exports.index = (req, res)->
-  console.log 'config index', config
+  # console.log 'config index', config
 
   res.render 'index', config
 

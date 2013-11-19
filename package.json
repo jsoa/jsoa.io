@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./node_modules/coffee-script/bin/coffee app.coffee"
   },
-  "version": "0.0.9",
+  "version": "0.0.10-4",
   "private": true,
   "dependencies": {
     "coffee-script": "*",
