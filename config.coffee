@@ -38,8 +38,10 @@ exports.cron =
   standalone: false
 
 
-exports.google_analytics =
+exports.analytics =
   account: ''
+  tracking_id: ''
+  domain: ''
 
 
 # end default config.
