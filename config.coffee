@@ -39,6 +39,9 @@ exports.cron =
   standalone: false
 
 
+exports.about = true
+
+
 exports.analytics =
   account: process.env.ANALYTICS_ACCOUNT or ''
   tracking_id: process.env.ANALYTICS_TRACKING_ID or ''
