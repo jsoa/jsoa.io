@@ -4,11 +4,12 @@ exports.mongo =
 
 exports.github =
   account: process.env.GITHUB_ACCOUNT or ''
+  key: process.env.GITHUB_KEY or ''
   token: process.env.GITHUB_TOKEN or ''
 
 
 exports.twitter =
-  account: ''
+  account: process.env.TWIT_ACCOUNT or ''
   oauth:
     consumer_key: process.env.TWIT_CONSUMER_KEY or ''
     consumer_secret: process.env.TWIT_CONSUMER_SECRET or ''
@@ -17,7 +18,7 @@ exports.twitter =
 
 
 exports.linkedin =
-  path: ''
+  path: process.env.LINKED_IN_PATH or ''
 
 
 exports.blog =
