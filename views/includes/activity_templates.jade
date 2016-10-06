@@ -191,7 +191,7 @@ script(type='text/ng-template', id='PushEvent')
       li(ng-repeat="commit in item.payload.payload.commits | limitTo:3")
         .me(ng-bind-html="commit.message | gitmessage:item.payload.repo.name:commit.sha")
       .m(ng-show="item.payload.payload.commits.length > 3")
-        ... and {{ item.payload.payload.commits.length - 3}} more commits
+        | ... and {{ item.payload.payload.commits.length - 3}} more commits
 
 
 script(type='text/ng-template', id='TeamAddEvent')

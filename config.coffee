@@ -21,12 +21,12 @@ exports.linkedin =
 
 
 exports.blog =
-  name: 'unknown'
+  name: process.env.BLOG_NAME or ''
   owner:
-    displayName: 'user'
-    avatarUrl: ''
-    jobTitle: ''
-    email: ''
+    displayName: process.env.OWNER_DISPLAY_NAME or ''
+    avatarUrl: process.env.OWNER_AVATAR_URL or ''
+    jobTitle: process.env.OWNER_JOB_TITLE or ''
+    email: process.env.OWNER_EMAIL or ''
 
 
 exports.google_plus =
@@ -39,9 +39,9 @@ exports.cron =
 
 
 exports.analytics =
-  account: ''
-  tracking_id: ''
-  domain: ''
+  account: process.env.ANALYTICS_ACCOUNT or ''
+  tracking_id: process.env.ANALYTICS_TRACKING_ID or ''
+  domain: process.env.ANALYTICS_DOMAIN or ''
 
 
 # end default config.
