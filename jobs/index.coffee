@@ -12,7 +12,7 @@ job1 = new cron.CronJob(
 
 
 job2 = new cron.CronJob(
-  '*/30 * * * *',
+  '*/5 * * * *',
   ->
     imports.repos()
     imports.orgs()
