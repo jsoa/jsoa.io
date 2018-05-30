@@ -2,7 +2,7 @@
   "name": "jsoa.io",
   "subdomain": "jsoa",
   "engines": {
-    "node": "1.0"
+    "node": "8.11.0"
   },
   "scripts": {
     "start": "node ./node_modules/coffee-script/bin/coffee app.coffee"
