@@ -37,6 +37,15 @@ app.configure 'development', ->
   app.use express.errorHandler()
 
 
+redirectToSecure = (req, res, next) ->
+  if req.secure or req.host == 'localhost'
+    return next()
+
+  res.redirect 'https://' + req.host + req.path
+
+
+app.all '*', redirectToSecure
+
 # Routes
 app.get '/', routes.index
 app.get '/about', routes.about
