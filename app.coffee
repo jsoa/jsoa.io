@@ -38,9 +38,8 @@ app.configure 'development', ->
 
 
 redirectToSecure = (req, res, next) ->
-  if req.protocol == 'https' or req.host == 'localhost'
+  if req.headers['x-forwarded-proto'] == 'https' or req.host == 'localhost'
     return next()
-
   res.redirect 'https://' + req.host + req.path
 
 
