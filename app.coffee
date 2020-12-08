@@ -17,6 +17,7 @@ db = require './db'
 # App
 app = express()
 
+
 app.configure ->
   app.set 'port', process.env.PORT || 3000
   app.set 'views', __dirname + '/views'
